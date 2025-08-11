@@ -1,0 +1,272 @@
+/* =========================================================
+   PREMIUM LANDING STÍLUS – kizárólag .landing-page alatt
+   Elegáns tipográfia, prémium animációk, sötét kezdő képernyő megtartva
+   ========================================================= */
+
+/* Google Fonts – elegáns kombináció: Playfair Display + Montserrat */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap");
+
+:root{
+  /* Színek */
+  --lp-paper:#ffffff;       /* kártya/landing háttér */
+  --lp-ink:#0f1115;         /* fő szöveg */
+  --lp-muted:#49505a;       /* hosszabb bekezdés */
+  --lp-soft:#6f7782;        /* halványabb elem */
+  --lp-accent:#00bcd4;      /* modern türkiz akcent */
+  --lp-brand:#e23b3b;       /* márka piros */
+  --lp-line:#e9eef3;        /* elválasztók */
+  --lp-card:#f9fbfd;        /* kártya belső átmenet */
+
+  /* Tipó */
+  --lp-serif:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  --lp-sans:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Árnyékok */
+  --lp-shadow-lg: 0 30px 80px rgba(14, 24, 40, .18);
+  --lp-shadow-md: 0 16px 40px rgba(14, 24, 40, .12);
+  --lp-shadow-sm: 0 10px 22px rgba(14, 24, 40, .08);
+}
+
+/* ===== WRAPPER ===== */
+.landing-page{
+  font-family: var(--lp-sans);
+  color: var(--lp-ink);
+  background: var(--lp-paper);
+  border-radius: 18px;
+  padding: clamp(2rem, 3.5vw, 3.25rem) clamp(1rem, 2.4vw, 1.75rem) clamp(3rem, 4vw, 4rem);
+  margin: clamp(1.8rem, 3vw, 2.6rem) auto;
+  max-width: 1180px;
+  position: relative;
+  overflow: clip;
+
+  /* prémium keret + árnyék */
+  box-shadow: 0 28px 90px rgba(0,0,0,.28), 0 8px 24px rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.5);
+  backdrop-filter: saturate(1.05);
+}
+
+/* finom fényudvar + dísz */
+.landing-page::before{
+  content:"";
+  position:absolute; inset:-40% -30% auto -30%; height:60%;
+  background: radial-gradient(700px 340px at 50% 0%, rgba(0,188,212,.10), transparent 70%);
+  pointer-events:none; filter: blur(3px);
+}
+.landing-page::after{
+  /* elegáns vékony gradient-keret belül */
+  content:"";
+  position:absolute; inset:0;
+  border-radius: 18px;
+  pointer-events:none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.4), inset 0 0 0 2px rgba(0,0,0,.02);
+}
+
+/* ===== FEJLÉC ===== */
+.landing-page .landing-header{
+  text-align:center;
+  margin-bottom: clamp(1.25rem, 3vw, 2.25rem);
+}
+.landing-page .landing-header h2{
+  margin:.2rem 0 .35rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform: uppercase;
+  font-size: clamp(.95rem, 1.8vw, 1.2rem);
+  color: var(--lp-brand);
+}
+.landing-page .landing-header h1{
+  margin:0 0 .85rem;
+  font-family: var(--lp-serif);
+  font-weight:700;
+  letter-spacing:.01em;
+  line-height: 1.12;
+  font-size: clamp(2rem, 5.6vw, 3.4rem);
+  position: relative;
+  display:inline-block;
+}
+/* elegáns, prémium aláhúzás akcenttel */
+.landing-page .landing-header h1::after{
+  content:"";
+  position:absolute;
+  left:50%; transform: translateX(-50%);
+  bottom: -10px;
+  width: clamp(120px, 16vw, 220px);
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, var(--lp-accent), transparent);
+  box-shadow: 0 6px 20px rgba(0,188,212,.35);
+}
+.landing-page .landing-header .intro{
+  margin:.4rem auto 0;
+  max-width: 900px;
+  color: var(--lp-muted);
+  line-height: 1.75;
+  font-weight: 300;
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+}
+
+/* ===== GRID ===== */
+.landing-page .features{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.4vw, 1.8rem);
+  margin-top: clamp(1.2rem, 2.2vw, 1.8rem);
+  border-top: 1px solid var(--lp-line);
+  padding-top: clamp(1rem, 2vw, 1.4rem);
+}
+@media (min-width: 896px){
+  .landing-page .features{ grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== KÁRTYÁK ===== */
+.landing-page .feature{
+  display:grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.25rem 1.2rem;
+  border-radius: 16px;
+
+  /* prémium „üveg” hatás + finom átmenet */
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(249,251,253,.96));
+  border: 1px solid rgba(238,242,246,.9);
+  box-shadow: 0 14px 34px rgba(14,24,40,.12);
+
+  transform: translateY(28px) scale(.985);
+  opacity: 0;
+  animation: lp-cardEnter .85s cubic-bezier(.21,.9,.22,1) forwards;
+  animation-play-state: paused; /* JS indítja on-scroll */
+  will-change: transform, opacity, filter;
+}
+.landing-page .feature:hover{
+  transform: translateY(0) scale(1) !important;
+  box-shadow: var(--lp-shadow-md);
+}
+
+/* „stagger” sorrend */
+.landing-page .feature:nth-child(1){ animation-delay: .08s }
+.landing-page .feature:nth-child(2){ animation-delay: .18s }
+.landing-page .feature:nth-child(3){ animation-delay: .28s }
+.landing-page .feature:nth-child(4){ animation-delay: .38s }
+
+/* Ikon */
+.landing-page .icon{
+  width:64px; height:64px;
+  display:grid; place-items:center;
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 80% at 30% 20%, #f0feff, transparent 60%),
+    #e7fbfe;
+  box-shadow: inset 0 -10px 16px rgba(0,0,0,.05);
+  border: 1px solid #d9f3f7;
+  font-size: 30px; line-height: 1;
+}
+
+/* Szövegek a kártyán */
+.landing-page .feature-text h3{
+  margin:.05rem 0 .2rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+}
+.landing-page .feature-text h4{
+  margin:.1rem 0 .65rem;
+  color:#00a2b5;
+  font-weight:600;
+  font-size: clamp(.92rem, 2vw, 1.02rem);
+}
+.landing-page .feature-text p{
+  margin:0;
+  color: var(--lp-muted);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ===== FEJLÉC + KÁRTYÁK – alapból „paused”, JS indítja ===== */
+.landing-page .landing-header h2,
+.landing-page .landing-header h1,
+.landing-page .landing-header .intro,
+.landing-page .feature{
+  animation-play-state: paused;
+  will-change: transform, opacity;
+}
+
+/* Fejléc alap anim (JS indítja on-scroll) */
+.landing-page .landing-header h2,
+.landing-page .landing-header h1,
+.landing-page .landing-header .intro{
+  opacity:0; transform: translateY(20px);
+  animation: lp-fadeUp .7s ease forwards;
+}
+.landing-page .landing-header h2{ animation-delay: .04s }
+.landing-page .landing-header h1{ animation-delay: .14s }
+.landing-page .landing-header .intro:nth-of-type(1){ animation-delay: .24s }
+.landing-page .landing-header .intro:nth-of-type(2){ animation-delay: .32s }
+
+/* ===== ANIMÁCIÓK ===== */
+@keyframes lp-fadeUp{
+  from{ opacity:0; transform: translateY(24px) }
+  to  { opacity:1; transform: translateY(0)   }
+}
+@keyframes lp-cardEnter{
+  from{ opacity:0; transform: translateY(28px) scale(.965); filter: blur(.2px) }
+  to  { opacity:1; transform: translateY(0)    scale(1);    filter: blur(0)    }
+}
+
+/* ===== Lassú első megjelenés a teljes blokkra (JS: .fade-in-up) ===== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUpSlow 1.2s ease forwards;
+}
+@keyframes fadeUpSlow {
+  0% { opacity: 0; transform: translateY(40px); }
+  100%{ opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Prémium háttér-árnyalás a landing mögé (JS: #dynamicContent.landing-stage) ===== */
+#dynamicContent.landing-stage {
+  position: relative;
+  z-index: 0;
+}
+#dynamicContent.landing-stage::before,
+#dynamicContent.landing-stage::after {
+  content: "";
+  position: fixed; /* viewport-hoz rögzítve – prémium érzet */
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+/* Aura: finom radialis fény a közép-felső régióból */
+#dynamicContent.landing-stage::before {
+  background:
+    radial-gradient(900px 520px at 50% 10%,
+      rgba(0,188,212,0.10),
+      rgba(0,188,212,0.06) 35%,
+      transparent 70%);
+  filter: blur(2px);
+  opacity: .9;
+}
+/* Vignetta: sötétebb peremek, hogy a doboz „kiemelkedjen” */
+#dynamicContent.landing-stage::after {
+  background:
+    radial-gradient(120% 90% at 50% 10%,
+      transparent 60%,
+      rgba(0,0,0,0.15) 95%);
+}
+
+/* Mozgás csökkentése – akadálymentesség */
+@media (prefers-reduced-motion: reduce){
+  .landing-page .feature,
+  .landing-page .landing-header h2,
+  .landing-page .landing-header h1,
+  .landing-page .landing-header .intro,
+  .fade-in-up{
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Emoji fix */
+.landing-page .emoji{ display:block; transform: translateZ(0); }

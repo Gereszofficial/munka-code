@@ -1,0 +1,501 @@
+/*
+  Bondi Cars alap stílusok
+
+  Ez a fájl határozza meg az oldal tipográfiáját, színeit és animációit.
+  A változók segítségével könnyen módosítható a színpaletta a teljes
+  weboldalon.  Az animációk lágy megjelenést és átmenetet biztosítanak
+  a hero szekció és a dinamikusan betöltött szakaszok számára.
+*/
+
+/* Alapszín-változók */
+:root {
+  --color-primary: #c62828; /* mély piros a kiemelésekhez */
+  --color-secondary: #333; /* sötét háttérszín */
+  --color-accent: #fafafa; /* világos szöveg- és háttérszín */
+  --font-stack: 'Montserrat', Arial, sans-serif;
+}
+
+/* Általános beállítások */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+font-family: 'Playfair Display', serif;
+color: #f4f4f4; /* Világos szöveg sötét háttérhez */
+line-height: 1.6;
+background-color: var(--color-secondary);
+color: var(--color-accent);
+overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Hero szakasz */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-accent);
+  background: linear-gradient(135deg, #1c1c1c, #2f2f2f);
+}
+
+/* Hero háttér képhez */
+.hero-cover {
+  background-image: url('placeholder-hero.jpg'); /* cseréld ki saját képedre */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6));
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 1rem;
+  animation: fadeUp 1.5s ease-out forwards;
+  opacity: 0;
+}
+/* Hero címsorok méretezése és súlya a mintához igazítva */
+.hero-text h2 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+  color: #ffffff;
+}
+.hero-text h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: #ffffff;
+}
+.hero-text .tagline {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  margin-bottom: 1.8rem;
+  color: #e0e0e0;
+}
+/* A hero gombhoz alkalmazott kékes árnyalat, fontos, hogy felülírja az alap .cta-button színt */
+.cta-button.hero-btn {
+  background-color: #0f172a!important;
+  border-radius: 4px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.cta-button.hero-btn:hover {
+  background-color: #0f172a !important;
+}
+
+/* Bal oldali vertikális gomb stílus */
+.left-tab {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.vertical-btn {
+  display: inline-block;
+  transform: rotate(-90deg);
+  transform-origin: left top;
+  background-color: #0f172a; /* világos türkiz */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px 4px 0 0;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.vertical-btn:hover {
+  background-color: #0f172a
+}
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #ddd;
+}
+.cta-button {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.cta-button:hover {
+  background-color: #a50000;
+  transform: translateY(-2px);
+}
+
+/* Dinamikus tartalom */
+#dynamicContent {
+  padding: 5rem 2rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Szolgáltatás szakaszok animációhoz */
+.service-section {
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.service-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.service-section h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+.service-section p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #1a1a1a;
+  color: #aaa;
+}
+
+/* Elrejtéshez */
+.hidden {
+  display: none;
+}
+
+/* Animációk */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .cta-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .nav-links {
+    gap: 1rem;
+  }
+}
+
+
+:root{
+  --nav-bg: rgba(255,255,255,.92);
+  --nav-text: #0f172a;
+  --nav-muted:#475569;
+  --nav-accent:#06b6d4;
+  --nav-border: rgba(2,6,23,.06);
+  --nav-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+}
+
+.nav-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: .6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand{
+  display:flex; align-items:center; gap:.6rem; text-decoration:none;
+}
+.brand-logo{ width: 38px; height: 38px; object-fit: contain; }
+.brand-text{ font-weight: 700; letter-spacing:.2px; color: var(--nav-text); text-transform: lowercase; }
+
+.nav-links{ margin-left: auto; }
+.nav-links ul{
+  display:flex; gap: 24px; list-style:none; margin:0; padding:0;
+}
+.nav-item a, 
+.nav-item a:hover, 
+
+
+
+
+
+
+
+
+
+.lang-switch{ display:flex; gap:10px; margin-left: 18px; }
+.lang-btn{
+  font-size: 14px; line-height: 1; padding: 6px 8px; border-radius: 8px;
+  background: transparent; border: 1px solid var(--nav-border); cursor: pointer;
+}
+.lang-btn:hover{ border-color: rgba(2,6,23,.18); }
+
+@media (max-width: 900px){
+  .nav-links ul{ gap:14px; }
+  .brand-text{ display:none; }
+}
+@media (max-width: 720px){
+  .nav-links{ display:none; }
+}
+
+
+/* === Premium Dark Navbar (centered menu) === */
+:root{
+  --navd-bg: rgba(10,12,17,.85);
+  --navd-panel: rgba(22,26,34,.75);
+  --navd-text: #e6edf3;
+  --navd-muted:#9aa4b2;
+  --navd-accent:#06b6d4; /* cyan */
+  --navd-border: rgba(255,255,255,.06);
+  --navd-shadow: 0 8px 30px rgba(0,0,0,.35);
+}
+
+.navbar{
+  position: sticky; top:0; z-index:1000;
+  background: linear-gradient(180deg, var(--navd-bg), rgba(10,12,17,.55));
+  backdrop-filter: blur(10px) saturate(120%);
+  border-bottom: 1px solid var(--navd-border);
+  box-shadow: var(--navd-shadow);
+}
+
+.nav-container{
+  max-width: 1200px; margin: 0 auto; padding: .65rem 1rem;
+  display:flex; align-items:center; gap: 16px;
+}
+
+.brand{ display:flex; align-items:center; gap:.65rem; text-decoration:none;}
+.brand-logo{ width:40px; height:40px; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,.35)); }
+.brand-text{
+  color: var(--navd-text);
+  font-weight: 800;
+  letter-spacing: .4px;
+  font-size: 1.05rem;
+  text-transform: none;
+  font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Inter, Helvetica, Arial;
+}
+
+.nav-center{ flex:1; display:flex; justify-content:center; }
+.nav-links ul{
+  display:flex; gap: 26px; list-style:none; margin:0; padding:0;
+}
+.nav-item a, 
+.nav-item a:hover, 
+.nav-item a.active{
+  color: var(--navd-accent);
+  box-shadow: inset 0 -2px 0 var(--navd-accent);
+}
+
+
+
+
+
+
+
+
+.lang-switch{ display:flex; gap:10px; margin-left: 14px; }
+.lang-btn{
+  font-size: 14px; line-height: 1; padding: 6px 8px; border-radius: 10px;
+  background: transparent; border: 1px solid var(--navd-border); cursor: pointer; color: var(--navd-text);
+}
+.lang-btn:hover{ border-color: rgba(255,255,255,.18); }
+
+@media (max-width: 900px){
+  .nav-links ul{ gap:16px; }
+  .brand-text{ display:none; }
+}
+@media (max-width: 720px){
+  .nav-center{ display:none; }
+}
+
+
+/* === Luxury Brand upgrades === */
+.brand-text{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-weight: 100;
+  letter-spacing: .5px;
+  font-size: 1.18rem;
+  /* gold-ish gradient */
+  background: linear-gradient(92deg, #023dff, #00a2ff 35%, #00c3ff 70%, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 0 transparent; /* remove previous text-shadow for crisp gradient */
+}
+.brand:hover .brand-text{ filter: brightness(1.05); }
+
+.brand-logo{
+  width:44px; height:44px; object-fit: contain;
+  border-radius: 14px;
+  /* subtle neon gold glow */
+  filter: drop-shadow(0 4px 4 rgba(0, 225, 255, 0.63)) drop-shadow(0 2px 8px rgba(155, 154, 154, 0.301));
+  transition: transform .18s ease, filter .18s ease;
+}
+.brand:hover .brand-logo{ transform: translateY(-1px); filter: drop-shadow(0 10px 26px rgba(46, 46, 46, 0.45)) drop-shadow(0 4px 12px rgba(0, 119, 255, 0.35)); }
+
+/* Centered nav underline (lux) */
+.nav-item a{
+  position: relative;
+  overflow: visible;
+}
+.nav-item a::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,.0), #00e5ff 30%, #61f9ff 70%, rgba(255,255,255,.0));
+  transform: translateX(-50%);
+  transition: width .28s ease;
+  border-radius: 2px;
+}
+.nav-item a:hover::after,
+.nav-item a.active::after{ width: 70%; }
+
+/* Body type upgrade (optional) */
+body{ font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+
+
+/* === Luxury+ micro-details === */
+/* Soft noise overlay on navbar */
+.navbar::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('noise.png');
+  background-size: 128px 128px;
+  opacity: .25;
+  mix-blend-mode: soft-light;
+  border-radius: inherit;
+}
+
+/* Hero soft gradient ring */
+#hero{
+  position: relative;
+  isolation: isolate; /* ensure overlay stacks nicely */
+}
+#hero::before{
+  content: "";
+}
+
+/* Micro-interactions on nav items */
+.nav-item a{
+  transform: translateZ(0); /* enable GPU */
+  transition: color .2s, background .2s, transform .2s;
+  will-change: transform;
+}
+.nav-item a:hover{
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .nav-item a:hover{ transform:none !important; }
+  #hero::before{ filter:none; }
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.hero h2, .hero .subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero.hero-cover {
+    position: relative;
+    min-height: 100vh;
+    background: url('images/Bondi\ Casrs.png') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* sötét overlay */
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+}

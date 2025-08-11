@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+      Bondi Cars – Kapcsolat
+
+      Ez az oldal lehetőséget biztosít a látogatóknak, hogy felvegyék a kapcsolatot a Bondi Cars
+      csapatával.  A form elemek külön CSS-fájlban kaptak stílust, hogy eltérjenek a főoldal
+      megjelenésétől, ugyanakkor megőrizzék a márka színvilágát.
+    -->
+    <title>Bondi Cars – Kapcsolat</title>
+    <!-- Google Fonts import a modern tipográfiához (Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header class="contact-header">
+        <nav class="contact-nav">
+            <a href="index.html" class="contact-logo">Bondi Cars</a>
+            <ul class="contact-links">
+                <li><a href="index.html">Kezdőlap</a></li>
+                <li><a href="contact.html" class="active">Kapcsolat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="contact-main">
+        <section class="contact-hero">
+            <h1>Lépjen velünk kapcsolatba</h1>
+            <p>Ha kérdése van szolgáltatásainkkal kapcsolatban, vagy szeretné autóját ránk bízni,
+               töltse ki az alábbi űrlapot, és hamarosan felvesszük Önnel a kapcsolatot.</p>
+        </section>
+        <section class="contact-form-section">
+            <form class="contact-form" action="#" method="post" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="name">Név</label>
+                    <input type="text" id="name" name="name" placeholder="Írja be a nevét" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Írja be az email címét" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Üzenet</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Írja be üzenetét" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Üzenet küldése</button>
+            </form>
+        </section>
+    </main>
+    <footer class="contact-footer">
+        <p>&copy; <span id="contact-year"></span> Bondi Cars. Minden jog fenntartva.</p>
+    </footer>
+    <script>
+        // Dinamikusan frissítjük az évszámot
+        document.getElementById('contact-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

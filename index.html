@@ -3,9 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bondicars</title>
+    <!--
+      Bondi Cars – főoldal
+
+      Ez az oldal üdvözli a látogatót és bemutatja röviden a Bondi Cars szolgáltatásait.  A felső
+      hero szakasz egy egész képernyőt elfoglaló háttérrel rendelkezik, amelyen keresztül egy
+      animált üdvözlő üzenet és egy gomb jelenik meg.  A gomb dinamikusan betölti a
+      szolgáltatásokat tartalmazó oldalt anélkül, hogy teljes újratöltést végezne.
+
+      Az oldal struktúráját és stílusát a bondicars/style.css állomány határozza meg, az interaktív
+      viselkedést pedig a bondicars/script.js fájl kezeli.  A fájlokat ugyanazon mappában
+      találod, így bármely szövegszerkesztővel könnyen módosíthatók.
+    -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>BondiCars – Kezdőlap</title>
+    <!-- Google Fonts import a modern, letisztult tipográfiához (Montserrat) -->
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="transition.css">
+    <link rel="icon" sizes="32x32" href="logo-32.png">
+    <link rel="icon" sizes="192x192" href="logo-192.png">
 </head>
 <body>
+
+<header class="navbar" data-brand="BondiCars">
+  <div class="nav-container">
+    <a class="brand" href="#hero" aria-label="Főoldal">
+      <img src="logo.png" alt="Márkanév logó" class="brand-logo" />
+      <span class="brand-text">BondiCars</span>
+    </a>
+
+    <div class="nav-center"><nav class="nav-links" aria-label="Fő navigáció">
+  <ul>
+    <li class="nav-item"><a href="#hero">Home</a></li>
+    <li class="nav-item"><a href="#" data-nav="rolunk">Rólunk</a></li>
+    <li class="nav-item"><a href="#" data-nav="szolgaltatasaink">Szolgáltatásaink</a></li>
+    <li class="nav-item"><a href="#" data-nav="referenciak">Referenciák</a></li>
+    <li class="nav-item"><a href="#" data-nav="araink">Áraink</a></li>
+    <li class="nav-item"><a href="#" data-nav="kapcsolat">Kapcsolat</a></li>
+  </ul>
+</nav></div>
+<div class="lang-switch" aria-label="Nyelvváltó">
+  <button class="lang-btn" data-lang="hu" title="Magyar">🇭🇺</button>
+  <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
+</div></nav>
+</div>
+</header>
+
+  <div id="page-transition-overlay" class="transition-overlay" aria-hidden="true"></div>
     
+
+    <!-- Hero section: nagy méretű kép, overlay és kiemelt szövegek -->
+    <section id="hero" class="hero hero-cover">
+        <div class="hero-overlay"></div>
+        <!-- Bal oldali vertikális gomb -->
+        <div class="left-tab">
+            <a href="#dynamicContent" class="vertical-btn">Azonnali ajánlat</a>
+        </div>
+        <div class="hero-content hero-text">
+            <h2>Legyen gondtalan az autóeladásod</h2>
+            <h1>Teljes körű szolgáltatás</h1>
+            <p class="tagline">A Te sikered a Mi küldetésünk!</p>
+            <button id="viewButton" class="cta-button hero-btn">Amit csinálunk</button>
+        </div>
+    </section>
+
+    <!-- Tartalom dinamikus betöltéshez -->
+    <main id="dynamicContent" class="hidden"></main>
+
+    <footer id="footer" class="hidden">
+        <p>&copy; <span id="year"></span> Bondi Cars. Minden jog fenntartva.</p>
+    </footer>
+
+    <!--
+      Tartalomsablon szolgáltatásokhoz (fájl alapú megnyitás esetén fallback)
+      A script.js próbálja lemezről betölteni a services.html fájlt.  Ha ez
+      biztonsági korlátozások miatt nem lehetséges (pl. file:// protokoll), akkor
+      ebből a sablonból tölti ki a dinamikus tartalmat.
+    -->
+    <template id="servicesTemplate">
+        <section class="services-intro">
+            <h1>Szolgáltatásaink</h1>
+            <p>
+                A Bondi Cars célja, hogy az autóeladás stresszmentes és egyszerű folyamat legyen. Komplett
+                háztól házig csomagunkkal minden terhet leveszünk a válláról – Ön továbbra is használhatja
+                autóját, miközben mi felkészítjük és eladjuk a legjobb áron.
+            </p>
+        </section>
+        <div class="service-section">
+            <h2>Állapotfelmérés &amp; szerviz</h2>
+            <p>
+                Alaposan átvizsgáljuk az autót, elvégezzük a szükséges karbantartásokat és javításokat,
+                hogy a jármű tökéletes állapotban legyen a piacra kerüléskor.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Tisztítás &amp; detailing</h2>
+            <p>
+                Professzionális belső és külső tisztítást, polírozást és kárpittisztítást biztosítunk,
+                hogy az autó megjelenése lenyűgözze a leendő vevőket.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Professzionális fotózás</h2>
+            <p>
+                Minőségi fényképeket és videókat készítünk a járműről, kihangsúlyozva annak előnyeit és
+                egyedi tulajdonságait a hirdetésekben.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Hirdetéskezelés</h2>
+            <p>
+                Meghirdetjük az autót a legnépszerűbb platformokon, optimalizált hirdetés-szöveggel és
+                célzott marketinggel a gyors és eredményes eladás érdekében.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Potenciális ügyfelek kezelése</h2>
+            <p>
+                Fogadjuk az érdeklődőket, bemutatjuk nekik az autót, válaszolunk a kérdésekre és
+                segítünk a próbaút megszervezésében.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Ügyintézés</h2>
+            <p>
+                Elintézzük a papírmunkát, az átírást, a biztosítási ügyeket és minden egyéb adminisztrációt,
+                hogy Önnek már csak az eladásból származó bevétellel kelljen foglalkoznia.
+            </p>
+        </div>
+        <div class="service-section">
+            <h2>Autóvásárlás külföldről</h2>
+            <p>
+                Amennyiben új autót szeretne vásárolni, segítünk a külföldről történő beszerzésben,
+                szállításban és honosításban, beleértve az okmányok intézését is.
+            </p>
+        </div>
+        <section class="services-conclusion">
+            <p>
+                Szolgáltatásaink célja, hogy az autóeladás gördülékeny, kényelmes és előnyös legyen az
+                Ön számára. Lépjen velünk kapcsolatba, és bízza ránk autója értékesítését vagy új járműve
+                beszerzését.
+            </p>
+            <a href="#hero" class="cta-button">Vissza a kezdőlapra</a>
+        </section>
+    </template>
+
+    <script src="script.js"></script>
+  <script src="transition.js"></script>
 </body>
 </html>

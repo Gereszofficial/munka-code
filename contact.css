@@ -1,0 +1,159 @@
+/*
+  Bondi Cars – Kapcsolat oldal stíluslap
+
+  A kapcsolat oldal világos háttérrel és letisztult megjelenéssel különül el a főoldaltól,
+  de ugyanazt az alapszínpalettát használja az összhang érdekében.  A form elemek
+  egyszerűek és felhasználóbarátak.
+*/
+
+:root {
+  --color-primary: #c62828;
+  --color-text: #333;
+  --color-bg: #f7f7f7;
+  --color-form-bg: #ffffff;
+  --color-border: #dddddd;
+  --font-stack: 'Montserrat', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-stack);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* Fejléc és navigáció */
+.contact-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--color-form-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.contact-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.contact-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.contact-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+.contact-links a:hover,
+.contact-links a.active {
+  color: var(--color-primary);
+}
+
+/* Tartalom */
+.contact-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.contact-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.contact-hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+.contact-hero p {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* Kapcsolat űrlap */
+.contact-form-section {
+  display: flex;
+  justify-content: center;
+}
+.contact-form {
+  background-color: var(--color-form-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
+}
+.submit-button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.submit-button:hover {
+  background-color: #a50000;
+  transform: translateY(-2px);
+}
+
+/* Lábléc */
+.contact-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  background-color: var(--color-form-bg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+@media (max-width: 600px) {
+  .contact-hero h1 {
+    font-size: 1.8rem;
+  }
+  .contact-hero p {
+    font-size: 0.9rem;
+  }
+  .contact-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-links {
+    gap: 1rem;
+  }
+}
